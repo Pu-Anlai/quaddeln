@@ -19,5 +19,5 @@ Environment=TAKE_FILE_OWNERSHIP=false
 [Service]
 Restart=always
 Memory=256m
-Volume=%h/radicale/.data:/data
+Volume=%h/radicale/data:/data
 Volume=%h/radicale/config:/config:ro
