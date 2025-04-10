@@ -20,7 +20,7 @@ test "$EUID" -eq 0 || rootflag="--user"
 update_container() {
     local quadlet_path outdated
     quadlet_path="$QUADLET_CONTAINER_DIR/$(basename "$1")"
-    diff -q "$1" "$quadlet_path" 2>/dev/null || outdated=yes
+    diff -q "$1" "$quadlet_path" 2>/dev/null >&2 || outdated=yes
     if [[ -n "$outdated" ]]; then
         cp -v "$1" "$quadlet_path"
         return 1
