@@ -11,6 +11,8 @@ shopt -s nullglob
 QUADLET_CONTAINER_DIR="$HOME/.config/containers/systemd"
 PROJECT_DIR="$(basename "$0")"
 
+mkdir -p "$QUADLET_CONTAINER_DIR"
+
 rootflag=
 test "$EUID" -eq 0 && rootflag="--user"
 
