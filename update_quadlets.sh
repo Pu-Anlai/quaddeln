@@ -40,7 +40,7 @@ for dir in "$PROJECT_DIR"/*; do
 
     for f in "$dir/"*.container "$dir/"*.network "$dir/"*.volume; do
         diff_container "$f" && continue
-        filebase="$(basename "$1")"
+        filebase="$(basename "$f")"
         updated_containers+=("${filebase%.*}")
     done
 done
