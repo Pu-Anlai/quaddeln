@@ -18,14 +18,13 @@ test "$EUID" -eq 0 && rootflag="--user"
 
 
 update_container() {
-    local filebase return
-    filebase="$(basename "$1")"
-    diff -q "$1" "$QUADLET_CONTAINER_DIR/$filebase" 2>/dev/null
-    return=$?
-    if [[ $return -ne 0 ]]; then
-        cp -v "$1" "$QUADLET_CONTAINER_DIR/$filebase"
+    local quadlet_path outdated
+    quadlet_path="$QUADLET_CONTAINER_DIR/$(basename "$1")"
+    diff -q "$1" "$quadlet_path" 2>/dev/null && outdated=yes
+    if [[ -n "$outdated" ]]; then
+        cp -v "$1" "$quadlet_path"
+        return 1
     fi
-    return $return
 }
 
 restart_service_maybe() {
