@@ -9,7 +9,7 @@
 shopt -s nullglob
 
 QUADLET_CONTAINER_DIR="$HOME/.config/containers/systemd"
-PROJECT_DIR="$(basename "$0")"
+PROJECT_DIR="$(dirname "$0")"
 
 mkdir -p "$QUADLET_CONTAINER_DIR"
 
@@ -39,7 +39,7 @@ for dir in "$PROJECT_DIR"/*; do
     test ! -d "$dir" && continue
 
     for f in "$dir/"*.container "$dir/"*.network "$dir/"*.volume; do
-        diff_container "$f" && continue
+        update_container "$f" && continue
         filebase="$(basename "$f")"
         updated_containers+=("${filebase%.*}")
     done
