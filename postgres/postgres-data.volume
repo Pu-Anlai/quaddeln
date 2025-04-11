@@ -2,4 +2,3 @@
 Description=Postgres backing volume
 
 [Volume]
-VolumeName=postgres-data

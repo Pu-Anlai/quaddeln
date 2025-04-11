@@ -2,5 +2,4 @@
 Description=Shared network for containers needing Postgres access
 
 [Network]
-NetworkName=postgres-net
 Internal=false
