@@ -2,8 +2,8 @@
 Description=Radicale DAV server
 
 [Container]
-Image=docker.io/tomsquest/docker-radicale:3.5.0.1
 ContainerName=radicale
+Image=docker.io/tomsquest/docker-radicale:3.5.0.1
 PublishPort=5232:5232
 RunInit=true
 ReadOnly=true
@@ -14,7 +14,9 @@ PidsLimit=50
 HealthCmd=curl -f http://127.0.0.1:5232 || exit 1
 HealthInterval=30s
 HealthRetries=3
+# This folder needs to exist on the host.
 Volume=%h/radicale/data:/data
+# Set authentication options in the config file on the host.
 Volume=%h/radicale/config:/config:ro
 
 [Service]
