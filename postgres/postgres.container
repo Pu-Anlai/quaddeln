@@ -11,3 +11,6 @@ Network=postgres-net.network
 
 [Service]
 Restart=always
+
+[Install]
+WantedBy=default.target
