@@ -35,14 +35,10 @@ restart_service_maybe() {
 
 
 updated_containers=()
-for dir in "$PROJECT_DIR"/*; do
-    test ! -d "$dir" && continue
-
-    for f in "$dir/"*.container "$dir/"*.network "$dir/"*.volume; do
-        update_container "$f" && continue
-        filebase="$(basename "$f")"
-        updated_containers+=("${filebase%.*}")
-    done
+for f in "$PROJECT_DIR/"**/*.container "$PROJECT_DIR/"**/*.network "$PROJECT_DIR/"**/*.volume; do
+    update_container "$f" && continue
+    filebase="$(basename "$f")"
+    updated_containers+=("${filebase%.*}")
 done
 
 if [[ ${#updated_containers[@]} -eq 0 ]]; then
