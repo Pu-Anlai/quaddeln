@@ -8,13 +8,12 @@ PublishPort=5232:5232
 RunInit=true
 ReadOnly=true
 NoNewPrivileges=true
-DropCapability=all
+DropCapability=ALL
 AddCapability=SETUID SETGID CHOWN KILL
 PidsLimit=50
 HealthCmd=curl -f http://127.0.0.1:5232 || exit 1
 HealthInterval=30s
 HealthRetries=3
-Environment=TAKE_FILE_OWNERSHIP=false
 Volume=%h/radicale/data:/data
 Volume=%h/radicale/config:/config:ro
 
