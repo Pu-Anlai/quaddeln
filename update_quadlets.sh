@@ -24,8 +24,8 @@ test "$EUID" -eq 0 || rootflag="--user"
 # Beginning of global functions
 read_custom_vars() {
     while IFS="" read -r line || [ -n "$line" ]; do
-        key="$(cut -d= -f 1 <<< "$line")"
-        value="$(cut -d= -f 2- <<< "$line")"
+        key="$(cut -s -d= -f 1 <<< "$line")"
+        value="$(cut -s -d= -f 2- <<< "$line")"
         CUSTOM_VARS["$key"]="$value"
     done < "$VAR_FILE"
 }
