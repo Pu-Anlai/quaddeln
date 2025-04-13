@@ -1,0 +1,4 @@
+[Unit]
+Description=Volume for ente minio backend data storage
+
+[Volume]

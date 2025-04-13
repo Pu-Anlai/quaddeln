@@ -1,0 +1,18 @@
+[Unit]
+Description=Startup script for the ente-minio container
+After=ente-minio.service
+BindsTo=ente-minio.service
+
+[Service]
+Type=oneshot
+# Use a small delay to ensure MinIO is ready
+ExecStartPre=/usr/bin/sleep 3
+ExecStart=/usr/bin/podman exec minio sh -c '\
+  while ! mc config host add h0 http://localhost:3200 {-{ente_minio_user}-} {-{ente_minio_pass}-} 2>/dev/null; do \
+    echo "Waiting for minio..."; \
+    sleep 0.5; \
+  done; \
+  cd /data; \
+  mc mb -p b2-eu-cen; \
+  mc mb -p wasabi-eu-central-2-v3; \
+  mc mb -p scw-eu-fr-v3;'
