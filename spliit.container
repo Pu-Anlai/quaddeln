@@ -1,0 +1,17 @@
+[Unit]
+Description=Container for Spliit, an open source alternative to Splitwise
+Requires=postgres.service
+After=postgres.service
+
+[Container]
+ContainerName=spliit
+Image=ghcr.io/crazy-max/spliit:1.15.0
+PublishPort=3000:3000/tcp
+Environment=TZ POSTGRES_HOST=postgres-shared POSTGRES_PORT=5432 POSTGRES_DB=spliit POSTGRES_USER=spliit POSTGRES_PASSWORD={-{postgres_spliit_password}-}
+Network=postgres-net.network
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
