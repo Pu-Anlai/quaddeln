@@ -20,6 +20,8 @@ mkdir -p "$QUADLET_CONTAINER_DIR"
 declare rootflag
 test "$EUID" -eq 0 || rootflag="--user"
 
+
+# Beginning of global functions
 read_custom_vars() {
     while IFS="" read -r line || [ -n "$line" ]; do
         key="$(cut -d= -f 1 <<< "$line")"
@@ -59,7 +61,10 @@ inject_variables() {
         sed -i "s/$var/$repl/g" "$1"
     done
 }
-# Initializie CUSTOM_VARS
+# End of global functions
+
+
+# Initialize CUSTOM_VARS
 read_custom_vars
 
 updated_containers=()
