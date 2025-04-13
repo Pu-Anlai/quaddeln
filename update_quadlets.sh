@@ -26,6 +26,7 @@ read_custom_vars() {
     while IFS="" read -r line || [ -n "$line" ]; do
         key="$(cut -s -d= -f 1 <<< "$line")"
         value="$(cut -s -d= -f 2- <<< "$line")"
+        test -z "$key" && continue
         CUSTOM_VARS["$key"]="$value"
     done < "$VAR_FILE"
 }
