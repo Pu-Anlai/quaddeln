@@ -7,8 +7,9 @@
 # never start inactive services on its own.
 
 shopt -s nullglob
+shopt -s globstar
 
-TEMP_PREFIX=update_quadlets
+TEMP_DIR="$(mktemp -d)"
 QUADLET_CONTAINER_DIR="$HOME/.config/containers/systemd"
 PROJECT_DIR="$(dirname "$0")"
 VAR_FILE="$(dirname "$0")/quadlet_vars"
@@ -58,16 +59,18 @@ inject_variables() {
         sed -i "s/$var/$repl/g" "$1"
     done
 }
+# Initializie CUSTOM_VARS
+read_custom_vars
 
 updated_containers=()
 for f in "$PROJECT_DIR/"**/*.container "$PROJECT_DIR/"**/*.network "$PROJECT_DIR/"**/*.volume; do
     # Create a copy of f so we can make edits
-    f_copy="$(mktemp -t "$TEMP_PREFIX.XXXXXXX")"
-    cp "$f" "$f_copy"
-    inject_variables "$f_copy"
-    update_container "$f_copy" && continue
     filebase="$(basename "$f")"
-    updated_containers+=("${filebase%.*}")
+    f_copy="$TEMP_DIR/$filebase"
+    cp "$f" "$f_copy"
+
+    inject_variables "$f_copy"
+    update_container "$f_copy" || updated_containers+=("${filebase%.*}")
     rm "$f_copy"
 done
 
@@ -82,3 +85,5 @@ else
         systemctl "$rootflag" restart "$unit.service" 
     done
 fi
+
+rmdir "$TEMP_DIR"
