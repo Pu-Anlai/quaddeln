@@ -1,5 +1,6 @@
 [Unit]
 Description=Minio storage service backend for ente
+BindsTo=ente-minio.service
 
 [Container]
 ContainerName=ente-minio
