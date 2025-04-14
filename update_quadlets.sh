@@ -135,7 +135,7 @@ done
 
 # process containers
 updated_containers=()
-for f in "$PROJECT_DIR/"**/*.container "$PROJECT_DIR/"**/*.network "$PROJECT_DIR/"**/*.volume; do
+for f in "$PROJECT_DIR/"**/*.{container,network,volume,service}; do
     f_copy=$(make_injected_copy "$f")
     update_container "$f_copy" || updated_containers+=("${filebase%.*}")
     rm "$f_copy"
