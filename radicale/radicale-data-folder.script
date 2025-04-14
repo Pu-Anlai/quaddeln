@@ -1,0 +1,11 @@
+#!/bin/bash
+
+RADICALE_DATA_FOLDER="$HOME/radicale/data"
+
+if [[ -d "$RADICALE_DATA_FOLDER" ]]; then
+    exit
+else
+    mkdir -p "$RADICALE_DATA_FOLDER"
+    # This feedback message is the only reason for this not just being a oneliner.
+    echo "$RADICALE_DATA_FOLDER created."
+fi
