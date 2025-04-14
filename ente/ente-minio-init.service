@@ -1,6 +1,5 @@
 [Unit]
 Description=Startup script for the ente-minio container
-After=ente-minio.service
 BindsTo=ente-minio.service
 
 [Service]
