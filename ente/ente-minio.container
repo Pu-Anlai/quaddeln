@@ -2,6 +2,7 @@
 Description=Minio storage service backend for ente
 Requires=ente-minio-init.service
 Before=ente-minio-init.service
+PartOf=ente-museum.service
 
 [Container]
 ContainerName=ente-minio

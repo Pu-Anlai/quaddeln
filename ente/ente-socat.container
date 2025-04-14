@@ -1,6 +1,7 @@
 [Unit]
 Description=Socat container to resolve localhost:3200 on the server to the minio container
 After=ente-museum.service ente-minio.service
+PartOf=ente-museum.service
 
 [Container]
 ContainerName=ente-socat
