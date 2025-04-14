@@ -1,9 +1,7 @@
 [Unit]
 Description=Minio storage service backend for ente
-BindsTo=ente-museum.service
 Requires=ente-minio-init.service
 Before=ente-minio-init.service
-After=ente-socat.service
 
 [Container]
 ContainerName=ente-minio

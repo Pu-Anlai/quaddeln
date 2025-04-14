@@ -1,7 +1,8 @@
 [Unit]
 Description=Museum, the main server component for ente
-Requires=postgres.service ente-minio.service ente-socat.service
-After=postgres.service ente-minio.service ente-socat.service
+BindsTo=ente-minio.service ente-socat.service
+Requires=postgres.service
+After=postgres.service
 
 [Container]
 ContainerName=ente-museum
