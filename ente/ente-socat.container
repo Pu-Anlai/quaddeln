@@ -7,4 +7,4 @@ PartOf=ente-museum.service
 ContainerName=ente-socat
 Image=docker.io/alpine/socat
 Exec='TCP-LISTEN:3200,fork,reuseaddr' TCP:ente-minio:3200
-Network=ente-museum.container
+Network=postgres-net.network
