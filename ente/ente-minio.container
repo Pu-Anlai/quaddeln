@@ -12,3 +12,4 @@ Environment=MINIO_ROOT_USER={-{ente_minio_user}-}
 Environment=MINIO_ROOT_PASSWORD={-{ente_minio_pass}-}
 Exec=server /data --address :3200 --console-address :3201
 Volume=ente-minio-data.volume:/data
+Network=ente-museum.container
