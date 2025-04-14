@@ -1,6 +1,8 @@
+{-{HOME}-}/.config/systemd/user/ente-minio-init.service
 [Unit]
 Description=Startup script for the ente-minio container
 BindsTo=ente-minio.service
+After=ente-minio.service
 
 [Service]
 Type=oneshot
