@@ -156,8 +156,7 @@ fi
 for f in "$PROJECT_DIR/"**/*.template; do
     f_copy=$(make_injected_copy "$f")
     dest=$(head -n1 "$f_copy")
-    test -e "$dest" && continue
-    update_template "$f_copy" "$dest"
+    test -e "$dest" || update_template "$f_copy" "$dest"
     rm "$f_copy"
 done
 
