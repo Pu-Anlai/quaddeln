@@ -111,9 +111,6 @@ update_template() {
     source="$1"
     dest="$2"
 
-    echo "---source: $source" >&2
-    echo "---dest: $dest" >&2
-
     test -e "$dest" && return
     mkdir -p "$(dirname "$dest")"
     tail -n+1 "$source" > "$dest"
