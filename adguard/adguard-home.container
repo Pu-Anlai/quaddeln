@@ -6,9 +6,9 @@ ContainerName=adguard-home
 Image=docker.io/adguard/adguardhome
 Volume=%h/adguard/work:/opt/adguardhome/work
 Volume=%h/adguard/conf:/opt/adguardhome/conf
-PublishPort=543:443/tcp
-PublishPort=543:443/udp
-PublishPort=180:80/tcp
+PublishPort=1043:443/tcp
+PublishPort=1043:443/udp
+PublishPort=1080:80/tcp
 PublishPort=4000:3000/tcp
 
 [Service]
