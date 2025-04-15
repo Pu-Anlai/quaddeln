@@ -9,10 +9,10 @@ Volume=%h/adguard/conf:/opt/adguardhome/conf
 
 [Service]
 Restart=always
-PublishPort=443:543/tcp
-PublishPort=443:543/udp
-PublishPort=80:180/tcp
-PublishPort=3000:4000/tcp
+PublishPort=543:443/tcp
+PublishPort=543:443/udp
+PublishPort=180:80/tcp
+PublishPort=4000:3000/tcp
 
 [Install]
 WantedBy=default.target
