@@ -1,0 +1,18 @@
+[Unit]
+Description=Network-wide ads & trackers blocking DNS server
+
+[Container]
+ContainerName=adguard-home
+Image=docker.io/adguard/adguardhome
+Volume=%h/adguard/work:/opt/adguardhome/work
+Volume=%h/adguard/conf:/opt/adguardhome/conf
+
+[Service]
+Restart=always
+PublishPort=443:543/tcp
+PublishPort=443:543/udp
+PublishPort=80:180/tcp
+PublishPort=3000:4000/tcp
+
+[Install]
+WantedBy=default.target
