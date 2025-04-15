@@ -6,13 +6,13 @@ ContainerName=adguard-home
 Image=docker.io/adguard/adguardhome
 Volume=%h/adguard/work:/opt/adguardhome/work
 Volume=%h/adguard/conf:/opt/adguardhome/conf
-
-[Service]
-Restart=always
 PublishPort=543:443/tcp
 PublishPort=543:443/udp
 PublishPort=180:80/tcp
 PublishPort=4000:3000/tcp
+
+[Service]
+Restart=always
 
 [Install]
 WantedBy=default.target
