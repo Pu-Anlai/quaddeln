@@ -143,9 +143,7 @@ if [[ ${#updated_containers[@]} -eq 0 ]]; then
 else
     systemctl "$ROOTFLAG" daemon-reload
     for unit in "${updated_containers[@]}"; do
-        systemctl "$ROOTFLAG" is-active --quiet "$unit.service" || continue
-        echo "Restarting $unit.service..." >&2
-        systemctl "$ROOTFLAG" restart "$unit.service" 
+        restart_service_maybe "$unit"
     done
 fi
 
