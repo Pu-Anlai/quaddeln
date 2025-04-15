@@ -20,9 +20,9 @@
 #
 # *.template:
 # Files with this extension will take a destination path from their first line.
-# The rest of the file will be copied to that destination but ONLY if that file
-# does not exist yet. Missing directories are created in the process. File
-# permissions will be copied from the template file.
+# The rest of the file will be copied to that specified destination. Missing
+# directories are created in the process. File permissions will be copied from
+# the template file.
 # BE AWARE that environment variables in the destination path will *not* be
 # expanded. # line. However, you can use {-{placeholder}-} variables as part of
 # the path.
@@ -111,11 +111,11 @@ update_template() {
     source="$1"
     dest="$2"
 
-    test -e "$dest" && return
+    diff -q "$dest" <(tail -n+2 "$source") 2>/dev/null >&2 && return
     mkdir -p "$(dirname "$dest")"
     tail -n+2 "$source" > "$dest"
     chown --reference="$source" "$dest"
-    echo "$dest created." >&2
+    echo "$dest updated." >&2
 }
 # End of global functions
 
@@ -154,7 +154,7 @@ fi
 for f in "$PROJECT_DIR/"**/*.template; do
     f_copy=$(make_injected_copy "$f")
     dest=$(head -n1 "$f_copy")
-    test -e "$dest" || update_template "$f_copy" "$dest"
+    update_template "$f_copy" "$dest"
     rm "$f_copy"
 done
 
