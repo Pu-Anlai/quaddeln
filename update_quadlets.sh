@@ -113,7 +113,7 @@ update_template() {
 
     test -e "$dest" && return
     mkdir -p "$(dirname "$dest")"
-    tail -n+1 "$source" > "$dest"
+    tail -n+2 "$source" > "$dest"
     chown --reference="$source" "$dest"
     echo "$dest created." >&2
 }
