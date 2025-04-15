@@ -1,0 +1,36 @@
+{-{HOME}-}/ente/museum.yaml
+key:
+      encryption: {-{ente_museum_key}-}
+      hash: {-{ente_museum_hash}-}
+
+jwt:
+      secret: {-{ente_museum_jwt_secret}-}
+
+db:
+      host: postgres-shared
+      port: 5432
+      name: ente
+      user: ente
+      password: {-{postgres_ente_password}-}
+
+s3:
+      are_local_buckets: true
+      b2-eu-cen:
+         key: {-{ente_minio_user}-}
+         secret: {-{ente_minio_pass}-}
+         endpoint: localhost:3200
+         region: eu-central-2
+         bucket: b2-eu-cen
+      wasabi-eu-central-2-v3:
+         key: {-{ente_minio_user}-}
+         secret: {-{ente_minio_pass}-}
+         endpoint: localhost:3200
+         region: eu-central-2
+         bucket: wasabi-eu-central-2-v3
+         compliance: false
+      scw-eu-fr-v3:
+         key: {-{ente_minio_user}-}
+         secret: {-{ente_minio_pass}-}
+         endpoint: localhost:3200
+         region: eu-central-2
+         bucket: scw-eu-fr-v3
