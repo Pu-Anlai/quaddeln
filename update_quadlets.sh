@@ -57,9 +57,9 @@ read_custom_vars() {
 }
 
 restart_service_maybe() {
-    systemctl "$ROOTFLAG" is-active --quiet "$1.service" || return
+    systemctl $ROOTFLAG is-active --quiet "$1.service" || return
     echo "Restarting $1.service..." >&2
-    systemctl "$ROOTFLAG" restart "$1.service"
+    systemctl $ROOTFLAG restart "$1.service"
 }
 
 replace_in_file() {
@@ -134,14 +134,17 @@ done
 updated_containers=()
 for f in "$PROJECT_DIR/"**/*.{container,network,volume,service}; do
     f_copy=$(make_injected_copy "$f")
-    update_container "$f_copy" || updated_containers+=("${filebase%.*}")
+    if ! update_container "$f_copy"; then
+        filebase="$(basename "$f")"
+        updated_containers+=("${filebase%.*}")
+    fi
     rm "$f_copy"
 done
 
 if [[ ${#updated_containers[@]} -eq 0 ]]; then
     echo "No updates to container units." >&2
 else
-    systemctl "$ROOTFLAG" daemon-reload
+    systemctl $ROOTFLAG daemon-reload
     for unit in "${updated_containers[@]}"; do
         restart_service_maybe "$unit"
     done
