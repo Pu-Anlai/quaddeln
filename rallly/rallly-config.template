@@ -1,0 +1,31 @@
+{-{HOME}-}/rallly/config.env
+# A random 32-character secret key used to encrypt user sessions
+SECRET_PASSWORD={-{rallly_secret_password}-}
+
+# The base url where this instance is accessible, including the scheme.
+# Example: https://example.com
+NEXT_PUBLIC_BASE_URL=https://soon.{-{hostname}-}
+
+# AUTH_URL should be the same as NEXT_PUBLIC_BASE_URL
+AUTH_URL=https://soon.{-{hostname}-}
+
+# A connection string to your Postgres database for direct access (used for migrations)
+DIRECT_DATABASE_URL="postgres://rallly:{-{postgres_rallly_password}-}@postgres-shared:5432/rallly"
+
+# Required to be able to send emails
+SUPPORT_EMAIL={-{smtp_mail}-}
+
+# Toggle Self-Hosted mode
+NEXT_PUBLIC_SELF_HOSTED=true
+
+# Suppress warning from sentry during local development
+SENTRY_IGNORE_API_RESOLUTION_ERROR=1
+
+# Mailhog SMTP settings
+SMTP_HOST={-{smtp_address}-}
+SMTP_PORT=587
+SMTP_SECURE=true
+SMTP_USER={-{smtp_mail}-}
+SMTP_PWD={-{smtp_password}-}
+
+ALLOWED_EMAILS={-{email}-}
