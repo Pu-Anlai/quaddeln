@@ -1,0 +1,27 @@
+#!/bin/bash
+
+ADGUARD_CERTS="$HOME/adguard/conf/certs"
+ADGUARD_WORK="$HOME/adguard/work"
+
+for folder in "$ADGUARD_CERTS" "$ADGUARD_WORK"; do
+    if [[ -d "$folder" ]]; then
+        exit
+    else
+        mkdir -p "$folder"
+        echo "$folder created."
+    fi
+done
+
+if [ -z "{-{adguard_path_to_cert}-}" ] || [ -z "{-{adguard_path_to_key}-}" ]; then
+    echo "Adguard requires valid TLS certificates for DNS-over-TLS." >&2
+    echo "Please provide values for adguard_path_to_key and adguard_path_to_cert in the quadlet_vars file." >&2
+else
+    cert="{-{adguard_path_to_cert}-}"
+    key="{-{adguard_path_to_key}-}"
+    for file in "$cert" "$key"; do
+        base="$(basename "$file")"
+        test -e "$ADGUARD_CERTS/$base" && continue
+        echo "Copying TLS certificate and key file to adguard folder using sudo..." >&2
+        sudo cp -v "$file" "$ADGUARD_CERTS/"
+    done
+fi
