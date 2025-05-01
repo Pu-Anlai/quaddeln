@@ -6,11 +6,19 @@ ContainerName=adguard-home
 Image=docker.io/adguard/adguardhome
 Volume=%h/adguard/work:/opt/adguardhome/work
 Volume=%h/adguard/conf:/opt/adguardhome/conf
+# Ports 443 and 80 are redirected to allow for a regular web server running on
+# the same domain
 PublishPort=1043:443/tcp
 PublishPort=1043:443/udp
 PublishPort=1080:80/tcp
 PublishPort=4000:3000/tcp
-PublishPort=1853:853/tcp
+# Most clients do not support specifying a custom port so for
+# DNS-over-[TLS/QUIC], so port forwarding needs to set up through the local
+# firewall.
+PublishPort=1053:53/tcp
+PublishPort=1053:53/tcp
+PublishPort=1853:853/udp
+PublishPort=1853:853/udp
 
 [Service]
 Restart=always
