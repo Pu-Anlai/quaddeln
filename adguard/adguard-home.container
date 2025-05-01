@@ -16,8 +16,8 @@ PublishPort=4000:3000/tcp
 # DNS-over-[TLS/QUIC], so port forwarding needs to set up through the local
 # firewall.
 PublishPort=1053:53/tcp
-PublishPort=1053:53/tcp
-PublishPort=1853:853/udp
+PublishPort=1053:53/udp
+PublishPort=1853:853/tcp
 PublishPort=1853:853/udp
 
 [Service]
