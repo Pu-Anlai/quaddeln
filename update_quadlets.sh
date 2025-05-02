@@ -30,6 +30,7 @@
 # Files are processed in the order above.
 
 shopt -s nullglob
+shopt -s extglob
 
 TEMP_DIR=$(mktemp -d)
 PROJECT_DIR=$(dirname "$0")
@@ -64,12 +65,24 @@ restart_service_maybe() {
 
 replace_in_file() {
     local repl
-    if [[ -v CUSTOM_VARS["$1"] ]]; then
-        repl=${CUSTOM_VARS["$1"]//\//\\\/}
-        sed -i "s/$var/$repl/g" "$2"
+
+    # allow execution of shell commands in backticks
+    if [ "${1:0:1}${1: -1}" = '``' ]; then
+        repl="$(exec ${1:1:-1})"
+        # trim whitespace
+        repl="${repl##*([[:space:]])}"
+        repl="${repl%%*([[:space:]])}"
+    # next, check if variable was provided by user
+    elif [[ -v CUSTOM_VARS["$1"] ]]; then
+        repl="${CUSTOM_VARS["$1"]}"
     else
         echo "Warning: $1 not defined in quadlet_vars." >&2
+        return
     fi
+
+    # escape backslashes for use with sed
+    repl=${repl//\//\\\/}
+    sed -i "s/$var/$repl/g" "$2"
 }
 
 inject_variables() {
