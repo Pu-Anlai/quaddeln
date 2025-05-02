@@ -1,0 +1,11 @@
+#!/bin/bash
+
+WIREGUARD_FOLDER="$HOME/wireguard"
+
+if [[ -d "$WIREGUARD_FOLDER" ]]; then
+    exit
+else
+    mkdir -p "$WIREGUARD_FOLDER"
+    # This feedback message is the only reason for this not just being a oneliner.
+    echo "$WIREGUARD_FOLDER created."
+fi
