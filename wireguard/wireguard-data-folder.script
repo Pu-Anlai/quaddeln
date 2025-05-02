@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WIREGUARD_FOLDER="$HOME/wireguard"
+WIREGUARD_FOLDER="$HOME/wireguard/config"
 
 if [[ -d "$WIREGUARD_FOLDER" ]]; then
     exit
