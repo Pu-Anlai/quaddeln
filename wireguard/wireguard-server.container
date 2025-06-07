@@ -5,7 +5,7 @@ Description=Simple yet fast and modern VPN
 ContainerName=wireguard-server
 Image=lscr.io/linuxserver/wireguard
 AddCapability=NET_ADMIN SYS_MODULE
-Environment=PUID={-{`id -u`}-} PGID={-{`id -g`}-} TZ={-{`timedatectl show --value --property=Timezone`}-} SERVERURL={-{wireguard_host_name}-} PEERS={-{wireguard_peers}-} SERVERPORT=51820 LOG_CONFS=true PERSISTENTKEEPALIVE_PEERS=all PEERDNS=208.67.222.222,1.1.1.1,8.8.8.8
+Environment=PUID={-{`id -u`}-} PGID={-{`id -g`}-} TZ={-{`timedatectl show --value --property=Timezone`}-} SERVERURL={-{wireguard_host_name}-} PEERS={-{wireguard_peers}-} SERVERPORT=51820 LOG_CONFS=true PERSISTENTKEEPALIVE_PEERS=all PEERDNS=1.1.1.1 ALLOWEDIPS={-{wireguard_allowed_ips}-}
 Volume=%h/wireguard/config:/config
 PublishPort=51820:51820/udp
 
