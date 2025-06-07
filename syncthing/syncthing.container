@@ -10,6 +10,8 @@ PublishPort=22000:22000/udp
 PublishPort=21027:21027/udp
 Volume=%h/syncthing:/var/syncthing
 HostName={-{syncthing_hostname}-}
+Environment=PUID=1000 PGID=1000
+User=1000:1000
 
 [Service]
 Restart=always
