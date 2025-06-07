@@ -1,0 +1,11 @@
+#!/bin/bash
+
+SYNCTHING_DATA_FOLDER="$HOME/syncthing"
+
+if [[ -d "$SYNCTHING_DATA_FOLDER" ]]; then
+    exit
+else
+    mkdir -p "$SYNCTHING_DATA_FOLDER"
+    # This feedback message is the only reason for this not just being a oneliner.
+    echo "$SYNCTHING_DATA_FOLDER created."
+fi
