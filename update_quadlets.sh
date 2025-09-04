@@ -130,6 +130,13 @@ update_template() {
     chown --reference="$source" "$dest"
     echo "$dest updated." >&2
 }
+
+# create local directories for any volume lines in $1
+create_vol_dirs() {
+    while read -r p; do
+        mkdir -p "$p"
+    done< <(awk -F "[=:]" '/^Volume=/ {print $2}' < "$1" | sed "s,%h,${HOME},")
+}
 # End of global functions
 
 
@@ -148,6 +155,7 @@ updated_containers=()
 for f in "$PROJECT_DIR/"**/*.{container,network,volume,service}; do
     f_copy=$(make_injected_copy "$f")
     if ! update_container "$f_copy"; then
+        create_vol_dirs "$f_copy"
         filebase="$(basename "$f")"
         updated_containers+=("${filebase%.*}")
     fi
