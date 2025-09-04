@@ -1,0 +1,15 @@
+[Unit]
+Description=Create polls and schedule meetings
+
+[Container]
+ContainerName=bitpoll
+Image=ghcr.io/fsinfuhh/bitpoll
+Volume=%h/bitpoll/static:/opt/static
+Volume=%h/bitpoll/config:/opt/config
+PublishPort=3009:3009
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
