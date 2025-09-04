@@ -1,9 +1,12 @@
 [Unit]
 Description=Create polls and schedule meetings
+Requires=postgres.service
+After=postgres.service
 
 [Container]
 ContainerName=bitpoll
 Image=ghcr.io/fsinfuhh/bitpoll
+Network=postgres-net.network
 Volume=%h/bitpoll/static:/opt/static
 Volume=%h/bitpoll/config:/opt/config
 PublishPort=3009:3009

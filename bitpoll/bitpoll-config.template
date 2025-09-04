@@ -55,20 +55,24 @@ PIPELINE_LOCAL = {}
 #PIPELINE_LOCAL['CSS_COMPRESSOR'] = 'pipeline.compressors.cssmin.CSSMinCompressor'
 #PIPELINE_ENABLED = True
 
-#LANGUAGE_CODE = 'en-us'
-#TIME_ZONE = 'Europe/Berlin'
+LANGUAGE_CODE = 'de-de'
+TIME_ZONE = 'Europe/Berlin'
 
 ## https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'bitpoll',
+       'USER': 'bitpoll',
+       'PASSWORD': '{-{postgres_bitpoll_password}-}',
+       'HOST': 'postgres-shared',
+       'PORT': "5432",
+   }
+}
 
 ## Customize your instance
-#SITE_NAME = 'Bitpoll'
-#BASE_URL = 'https://bitpoll.mafiasi.de'
+SITE_NAME = 'In Bälde'
+BASE_URL = 'https://bald.hassbanane.de'
 
 ## Url to the Base Homepage and Text on the Link, leave empty to not use this option
 #HOME_URL = "https://example.com"

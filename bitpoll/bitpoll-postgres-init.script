@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -z "$(podman ps --filter "name=postgres-shared" --format "{{.ID}}")" ]; then
+    echo "Container postgres-shared not running. Exiting bitpoll-postgres-init.script..."
+    exit
+fi
+
+if ! podman exec -t postgres-shared psql -U postgres -tXAc "SELECT 1 FROM pg_roles WHERE rolname='bitpoll'" | grep -q 1 ; then
+    podman exec -t postgres-shared psql -U postgres -Xc "CREATE USER bitpoll WITH PASSWORD '{-{postgres_bitpoll_password}-}';"
+fi
+
+if ! podman exec -t postgres-shared psql -U postgres -tXAc "SELECT 1 FROM pg_database WHERE datname='bitpoll'" | grep -q 1 ; then
+    podman exec -t postgres-shared psql -U postgres -Xc "CREATE DATABASE bitpoll OWNER bitpoll;"
+fi
