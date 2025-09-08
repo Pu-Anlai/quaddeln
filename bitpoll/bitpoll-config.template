@@ -131,3 +131,8 @@ BASE_URL = 'https://bald.hassbanane.de'
 #                 "cn=Server-AG,ou=groups,dc=mafiasi,dc=de"],
 #    "is_superuser": "cn=Server-AG,ou=groups,dc=mafiasi,dc=de"
 #}
+EMAIL_HOST = "{-{smtp_address}-}"
+EMAIL_HOST_PASSWORD = "{-{smtp_password}-}"
+EMAIL_HOST_USER = "{-{smtp_mail}-}"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
