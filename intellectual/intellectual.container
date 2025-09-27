@@ -1,0 +1,19 @@
+[Unit]
+Description=Alternate frontend for Genius focused on privacy and simplicity
+
+[Container]
+ContainerName=intellectual
+Image=docker.io/insprill/intellectual:latest
+PublishPort=8090:8080
+ReadOnly=true
+NoNewPrivileges=true
+DropCapability=ALL
+HealthCmd=wget -nv --tries=1 --spider http://127.0.0.1:8080 || exit 1
+HealthInterval=1m
+HealthTimeout=5s
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
