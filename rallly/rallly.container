@@ -5,7 +5,7 @@ After=postgres.service
 
 [Container]
 ContainerName=rallly
-Image=docker.io/lukevella/rallly:4.3
+Image=docker.io/lukevella/rallly:4.6
 Network=postgres-net.network
 PublishPort=3100:3000
 # for reasons unknown to me this variable needs to be available before EnvironmentFile is sourced
