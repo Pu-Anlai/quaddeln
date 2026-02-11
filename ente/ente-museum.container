@@ -4,7 +4,7 @@ Requires=postgres.service
 After=postgres.service
 
 [Container]
-Pod=ente-server
+Pod=ente.pod
 ContainerName=ente-museum
 Image=ghcr.io/ente-io/server
 # Ensure this database and user exists on the postgres container

@@ -13,7 +13,7 @@
 # *.script:
 # These are arbitrary scripts that will be executed.
 #
-# *.container/*.volume/*.network/*.service:
+# *.container/*.volume/*.network/*.service/*.pod:
 # These files will be copied to $HOME/.config/containers/systemd If the
 # corresponding units are currently running `systemctl [--user] daemon-reload'
 # will be run and every running unit will be restarted
@@ -154,7 +154,7 @@ done
 
 # process containers
 updated_containers=()
-for f in "$PROJECT_DIR/"**/*.{container,network,volume,service}; do
+for f in "$PROJECT_DIR/"**/*.{container,network,volume,service,pod}; do
     f_copy=$(make_injected_copy "$f")
     if ! update_container "$f_copy"; then
         create_vol_dirs "$f_copy"

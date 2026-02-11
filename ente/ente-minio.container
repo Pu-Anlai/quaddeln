@@ -4,7 +4,7 @@ Requires=ente-minio-init.service
 Before=ente-minio-init.service
 
 [Container]
-Pod=ente-server
+Pod=ente.pod
 ContainerName=ente-minio
 Image=docker.io/minio/minio
 PublishPort=3200:3200
