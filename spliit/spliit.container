@@ -7,8 +7,7 @@ After=postgres.service
 ContainerName=spliit
 Image=ghcr.io/spliit-app/spliit:1.19.0
 PublishPort=3000:3000/tcp
-# Environment=TZ POSTGRES_HOST=postgres-shared POSTGRES_PORT=5432 POSTGRES_DB=spliit POSTGRES_USER=spliit POSTGRES_PASSWORD={-{postgres_spliit_password}-}
-Environment=POSTGRES_PRISMA_URL=postgresql://postgres:{-{postgres_spliit_password}-}@db POSTGRES_URL_NON_POOLING=postgresql://postgres:{-{postgres_spliit_password}-}@db
+Environment=POSTGRES_PRISMA_URL=postgresql://spliit:{-{postgres_spliit_password}-}@postgres-shared:5432/spliit POSTGRES_URL_NON_POOLING=postgresql://spliit:{-{postgres_spliit_password}-}@postgres-shared:5432/spliit
 Network=postgres-net.network
 
 [Service]
