@@ -1,0 +1,8 @@
+[Unit]
+Description=Ente Pod encapsulating all required container parts
+
+[Pod]
+PodName=ente-server
+PublishPort=8080:8080
+PublishPort=3200:3200
+Network=postgres-net.network

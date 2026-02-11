@@ -2,9 +2,9 @@
 Description=Minio storage service backend for ente
 Requires=ente-minio-init.service
 Before=ente-minio-init.service
-PartOf=ente-museum.service
 
 [Container]
+Pod=ente-server
 ContainerName=ente-minio
 Image=docker.io/minio/minio
 PublishPort=3200:3200
@@ -12,4 +12,3 @@ Environment=MINIO_ROOT_USER={-{ente_minio_user}-}
 Environment=MINIO_ROOT_PASSWORD={-{ente_minio_pass}-}
 Exec=server /data --address :3200 --console-address :3201
 Volume=ente-minio-data.volume:/data
-Network=postgres-net.network

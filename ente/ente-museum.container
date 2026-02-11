@@ -1,19 +1,15 @@
 [Unit]
 Description=Museum, the main server component for ente
-BindsTo=ente-minio.service ente-socat.service
 Requires=postgres.service
 After=postgres.service
 
 [Container]
+Pod=ente-server
 ContainerName=ente-museum
 Image=ghcr.io/ente-io/server
 # Ensure this database and user exists on the postgres container
 Environment=POSTGRES_USER=ente POSTGRES_PASSWORD={-{postgres_ente_password}-} POSTGRES_DB=ente
-PublishPort=8080:8080
-Network=postgres-net.network
-# This file needs to exist on the host.
 Volume=%h/ente/museum.yaml:/museum.yaml:ro
-# This folder too.
 Volume=%h/ente/data:/data:ro
 
 [Service]
