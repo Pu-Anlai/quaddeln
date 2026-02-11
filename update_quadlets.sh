@@ -134,6 +134,8 @@ update_template() {
 # create local directories for any volume lines in $1
 create_vol_dirs() {
     while read -r p; do
+        # if the mapping has an extension, we'll assume it's not a directory
+        test "${p%.*}" != "$p" && continue
         mkdir -p "$p"
     done< <(awk -F "[=:]" '/^Volume=/ {print $2}' < "$1" | sed "s,%h,${HOME},")
 }
