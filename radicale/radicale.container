@@ -3,7 +3,7 @@ Description=Radicale DAV server
 
 [Container]
 ContainerName=radicale
-Image=docker.io/tomsquest/docker-radicale:3.5.5.0
+Image=docker.io/tomsquest/docker-radicale:3.6.0.0
 PublishPort=5232:5232
 RunInit=true
 ReadOnly=true
