@@ -5,7 +5,7 @@ Description=Web interface for ente
 Pod=ente.pod
 ContainerName=ente-web
 Image=ghcr.io/ente-io/web
-Environment=ENTE_API_ORIGIN=https://ente-api.{-{hostname}-} ENTE_ALBUMS_ORIGIN=https://ente-share.{-{hostname}-} ENTE_PHOTOS_ORIGIN=https://ente.{-{hostname}-}
+Environment=ENTE_API_ORIGIN=https://ente-api.{-{hostname}-} ENTE_PHOTOS_ORIGIN=https://ente.{-{hostname}-}
 
 [Service]
 Restart=always

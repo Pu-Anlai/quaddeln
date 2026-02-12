@@ -9,6 +9,4 @@ PublishPort=8080:8080
 PublishPort=3200:3200
 # web interface
 PublishPort=5000:3000
-# public sharing interface
-PublishPort=5002:3002
 Network=postgres-net.network
