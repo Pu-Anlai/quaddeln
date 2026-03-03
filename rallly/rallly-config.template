@@ -10,7 +10,7 @@ NEXT_PUBLIC_BASE_URL=https://soon.{-{hostname}-}
 AUTH_URL=https://soon.{-{hostname}-}
 
 # A connection string to your Postgres database for direct access (used for migrations)
-DIRECT_DATABASE_URL="postgres://rallly:{-{postgres_rallly_password}-}@postgres-shared:5432/rallly"
+DIRECT_DATABASE_URL=postgres://rallly:{-{postgres_rallly_password}-}@postgres-shared:5432/rallly
 
 # Required to be able to send emails
 SUPPORT_EMAIL={-{smtp_mail}-}
