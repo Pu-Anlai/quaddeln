@@ -6,6 +6,7 @@ ContainerName=adguard-home
 Image=docker.io/adguard/adguardhome
 Volume=%h/adguard/work:/opt/adguardhome/work
 Volume=%h/adguard/conf:/opt/adguardhome/conf
+Volume=%h/quadlet_certs:/opt/certs
 # Ports 443 and 80 are redirected to allow for a regular web server running on
 # the same domain
 PublishPort=1043:443/tcp

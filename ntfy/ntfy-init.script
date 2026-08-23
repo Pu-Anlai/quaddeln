@@ -1,7 +1,7 @@
 #!/bin/bash
 
 entry="ntfy.{-{hostname}-}:ntfy.service" 
-mapping_file="{-{HOME}-}/quadlets_certs/mappings"
+mapping_file="{-{HOME}-}/quadlet_certs/mappings"
 
 mkdir -p "$(dirname "$mapping_file")"
 touch "$mapping_file"

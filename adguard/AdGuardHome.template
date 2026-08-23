@@ -84,8 +84,8 @@ tls:
   allow_unencrypted_doh: false
   certificate_chain: ""
   private_key: ""
-  certificate_path: /opt/adguardhome/conf/certs/{-{adguard_cert_file}-}
-  private_key_path: /opt/adguardhome/conf/certs/{-{adguard_key_file}-}
+  certificate_path: /certs/dns.{-{hostname}-}.crt
+  private_key_path: /certs/dns.{-{hostname}-}.key
   strict_sni_check: false
 querylog:
   dir_path: ""
