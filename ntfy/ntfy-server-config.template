@@ -132,11 +132,15 @@ auth-file: "/var/cache/ntfy/auth.db"
 auth-default-access: "deny-all"
 # auth-startup-queries:
 auth-users:
-  - "user:$2a$10$qWXTVXypMbNjmcXlMMmcDeT6VS7LjBmZuOM.3/xXehaL5ke8ILHc.:user"
-  - "admin:$2a$10$wpNca5DXrAb5cWCO53LVpOJNgtioF3yAzUClSwU3mjij9PQLhb7lq:admin"
+  - "user:{-{ntfy_user_pw_hash}-}:user"
+  - "admin:{-{ntfy_admin_pw_hash}-}:admin"
+  - "publisher:{-{ntfy_publisher_pw_hash}-}:user"
 auth-access:
-  - "*:up*:write-only"
-# auth-tokens:
+  - "user:*:read-only"
+  - "publisher:*:write-only"
+auth-tokens:
+  - "user:{-{ntfy_user_token}-}:user_token"
+  - "publisher:{-{ntfy_publisher_token}-}:publisher_token"
 # auth-access-cache: false
 
 # If set, the X-Forwarded-For header (or whatever is configured in proxy-forwarded-header) is used to determine
@@ -240,8 +244,8 @@ behind-proxy: true
 # - web-push-expiry-warning-duration defines the duration after which unused subscriptions are sent a warning (default is 55d)
 # - web-push-expiry-duration defines the duration after which unused subscriptions will expire (default is 60d)
 #
-web-push-public-key: "{-{ntfy-web-push-public-key}-}"
-web-push-private-key: "{-{ntfy-web-push-private-key}-}"
+web-push-public-key: "{-{ntfy_web_push_public_key}-}"
+web-push-private-key: "{-{ntfy_web_push_private_key}-}"
 web-push-file: "/var/cache/ntfy/webpush.db"
 web-push-email-address: "{-{email}-}"
 # web-push-startup-queries:
