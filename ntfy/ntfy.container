@@ -1,0 +1,24 @@
+[Unit]
+Description=Send push notifications to subscribed clients
+
+[Container]
+ContainerName=ntfy
+Image=docker.io/binwiederhier/ntfy:v2
+Environment=TZ={-{`timedatectl show --value --property=Timezone`}-}
+Exec=serve
+PublishPort=2080:80
+Volume=%h/ntfy/cache:/var/cache/ntfy
+Volume=%h/ntfy/config:/etc/ntfy
+Volume=%h/quadlet_certs:/opt/certs
+HealthCmd="wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"
+HealthInterval=60s
+HealthTimeout=10s
+HealthStartPeriod=40s
+RunInit=true
+Network=postgres-net.network
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

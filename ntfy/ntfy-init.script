@@ -1,0 +1,9 @@
+#!/bin/bash
+
+entry="ntfy.{-{hostname}-}:ntfy.service" 
+mapping_file="{-{HOME}-}/quadlets_certs/mappings"
+
+mkdir -p "$(dirname "$mapping_file")"
+touch "$mapping_file"
+grep -Fq "$entry" "$mapping_file" && exit
+echo "$entry" >> "$mapping_file"
