@@ -1,0 +1,22 @@
+[Unit]
+Description=Real Estate Finder for Europe
+
+[Container]
+ContainerName=fredy
+Image=ghcr.io/orangecoding/fredy:27.4.0
+Environment=NODE_ENV=production
+PublishPort=9998:9998
+Volume=%h/fredy/conf:/conf
+Volume=%h/fredy/db:/db
+HealthCmd="curl --fail --silent --show-error --max-time 5 http://localhost:9998/"
+HealthInterval=120s
+HealthTimeout=10s
+HealthStartPeriod=30s
+HealthRetries=3
+Memory=1G
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
